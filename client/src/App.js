@@ -10,7 +10,6 @@ import AlertState from "./context/alert/AlertState";
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import Background from "./beerbarrel.jpg";
 
 function App() {
   return (
@@ -31,9 +30,4 @@ function App() {
     </AlertState>
   );
 }
-
-const styles = {
-  backgroundImage: `url(${Background})`
-};
-
 export default App;
