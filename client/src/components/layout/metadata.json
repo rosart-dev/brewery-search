@@ -1,0 +1,13 @@
+{
+  "types": [
+    "",
+    "Micro",
+    "Regional",
+    "Brewpub",
+    "Large",
+    "Planning",
+    "Bar",
+    "Contract",
+    "Proprietor"
+  ]
+}
