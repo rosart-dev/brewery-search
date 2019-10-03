@@ -28,11 +28,7 @@ const BreweryState = props => {
 
   const searchBreweries = async url => {
     setLoading();
-    const res = await axios.get(`/api/breweries/getBreweries/`, {
-      params: {
-        url
-      }
-    });
+    const res = await axios.get(url);
     if (res.data.length === 0) {
       alertContext.setAlert(
         "Sorry, we could not find breweries for what you're looking for. Please try another search term.",
@@ -64,11 +60,21 @@ const BreweryState = props => {
 
   const getUserLocation = async (lat, long) => {
     setLoading();
-    const res = await axios.get(`/api/google/geocoding/${lat}/${long}`);
+    const res = await axios.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=AIzaSyDszS9vH_VpB6mumst6qwxOXfOAIqpcXpg`
+    );
 
     const url = new BreweryURLBuilder()
-      .setCity(res.data.city)
-      .setState(res.data.state);
+      .setCity(
+        res.data.results[0].address_components[3].long_name
+          .toLowerCase()
+          .replace("the ", "")
+      )
+      .setState(
+        res.data.results[0].address_components[5].long_name
+          .toLowerCase()
+          .replace(" ", "_")
+      );
 
     searchBreweries(url.getUrl());
   };
