@@ -10,7 +10,13 @@ const Search = () => {
 
   const [text, setText] = useState("");
 
-  const { searchBreweries, getUserLocation } = breweryContext;
+  const {
+    searchBreweries,
+    clearBreweries,
+    clearFilters,
+    getUserLocation,
+    breweries
+  } = breweryContext;
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -40,8 +46,13 @@ const Search = () => {
     } else {
       const url = new BreweryURLBuilder().setText(text);
       searchBreweries(url.getUrl());
-      setText("");
     }
+  };
+
+  const clearAll = () => {
+    setText("");
+    clearBreweries();
+    clearFilters();
   };
 
   return (
@@ -60,16 +71,16 @@ const Search = () => {
           <input
             type="submit"
             value="Search"
-            className="btn btn-success col-md-12 col-sm-12"
+            className="btn btn-success col-md-6 col-sm-6"
           />
-          {/* {breweries.length > 0 && (
+          {breweries.length > 0 && (
             <input
               type="button"
               value="Clear All"
               className="btn btn-danger col-md-6 col-sm-12"
               onClick={clearAll}
             />
-          )} */}
+          )}
         </div>
       </form>
     </div>

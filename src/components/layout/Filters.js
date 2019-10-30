@@ -2,7 +2,10 @@ import React, { Fragment, useState, useContext, useEffect } from "react";
 import BreweryContext from "../../context/brewery/breweryContext";
 import BreweryURLBuilder from "../../utils/BreweryURLBuilder";
 
-import { getCity, getState, getName } from "../../utils/utilities";
+import {
+  getParam,
+  convertStrFormatFromUnderScoreToSpaces
+} from "../../utils/utilities";
 
 const Filters = () => {
   const breweryContext = useContext(BreweryContext);
@@ -25,15 +28,23 @@ const Filters = () => {
 
   useEffect(() => {
     if (breweryContext.url.length > 0) {
-      setCity(getCity(breweryContext.url));
-      setState(getState(breweryContext.url));
+      setCity(
+        convertStrFormatFromUnderScoreToSpaces(
+          getParam("by_city", breweryContext.url)
+        )
+      );
+      setState(
+        convertStrFormatFromUnderScoreToSpaces(
+          getParam("by_state", breweryContext.url)
+        )
+      );
     }
   }, [breweryContext.url]);
 
   const applyFilters = e => {
     let Url = new BreweryURLBuilder();
 
-    let prevName = getName(breweryContext.url);
+    let prevName = getParam("by_name", breweryContext.url);
     if (prevName.length) {
       Url.setText(prevName);
     }

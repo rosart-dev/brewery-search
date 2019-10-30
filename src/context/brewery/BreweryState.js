@@ -15,7 +15,7 @@ import {
 } from "../types";
 
 import BreweryURLBuilder from "../../utils/BreweryURLBuilder";
-import { getName } from "../../utils/utilities";
+import { getParam } from "../../utils/utilities";
 
 const BreweryState = props => {
   const initialState = {
@@ -83,8 +83,8 @@ const BreweryState = props => {
   };
 
   const clearFilters = () => {
-    if (state.url.includes("&by_name=")) {
-      let name = getName(state.url);
+    let name = getParam("by_name", state.url);
+    if (name.length) {
       const Url = new BreweryURLBuilder().setText(name);
       searchBreweries(Url.getUrl());
     } else {
