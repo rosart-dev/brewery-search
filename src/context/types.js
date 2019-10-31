@@ -8,5 +8,5 @@ export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const SHOW_MODAL = "SHOW_MODAL";
 export const HIDE_MODAL = "HIDE_MODAL";
-export const SAVE_PREV_URL = "SAVE_URL";
+export const SAVE_PREV_URL = "SAVE_PREV_URL";
 export const CLEAR_PREV_URL = "CLEAR_PREV_URL";

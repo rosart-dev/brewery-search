@@ -47,7 +47,8 @@ export default (state, action) => {
       return {
         ...state,
         breweries: [],
-        loading: false
+        loading: false,
+        url: ""
       };
     case SET_LOADING:
       return {

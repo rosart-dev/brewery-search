@@ -38,6 +38,11 @@ const Filters = () => {
           getParam("by_state", breweryContext.url)
         )
       );
+      setType(
+        convertStrFormatFromUnderScoreToSpaces(
+          getParam("by_type", breweryContext.url)
+        )
+      );
     }
   }, [breweryContext.url]);
 
@@ -59,7 +64,7 @@ const Filters = () => {
     setCity("");
     setState("");
     setType("");
-    breweryContext.clearFilters();
+    breweryContext.clearFilters(true);
   };
 
   const types = [

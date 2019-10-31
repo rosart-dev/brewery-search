@@ -71,20 +71,18 @@ const BreweryState = props => {
           .toLowerCase()
           .replace(" ", "_")
       );
-
-    //Set these values in the filters bar
-
     searchBreweries(url.getUrl());
   };
 
   const clearBreweries = () => {
-    dispatch({ type: CLEAR_BREWERIES });
     dispatch({ type: CLEAR_PREV_URL });
+    dispatch({ type: CLEAR_BREWERIES });
+    clearFilters(false);
   };
 
-  const clearFilters = () => {
+  const clearFilters = (saveName = false) => {
     let name = getParam("by_name", state.url);
-    if (name.length) {
+    if (saveName && name.length) {
       const Url = new BreweryURLBuilder().setText(name);
       searchBreweries(Url.getUrl());
     } else {

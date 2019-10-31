@@ -52,7 +52,6 @@ const Search = () => {
   const clearAll = () => {
     setText("");
     clearBreweries();
-    clearFilters();
   };
 
   return (
